@@ -1,0 +1,73 @@
+<!DOCTYPE HTML>
+<html lang="es">
+<head>
+
+     <meta charset="utf-8">
+     <title>TECNOLOGÍA</title>
+     <meta name="description" content="HTML5">
+     <meta name="author" content="Carlos Robles">
+     <link rel="stylesheet" href="css/estilos.css">
+     <link href='https://fonts.googleapis.com/css?family=Bangers' rel='stylesheet'>
+     <script src="js/contacto.js"></script>
+</head>
+
+  <body>
+
+  	    <div id="page">
+
+		     <header>
+
+		     	<h1><img src="../imgs/logo.png" href="" content="">SISTEMAS OPERATIVOS</h1>
+
+		     </header>
+
+		     <nav>
+
+				<ul>
+
+					  <li>
+					  	<a href="../index.html" title="Inicio">Inicio</a>
+					  </li>
+
+					  <li><a href="" title="Productos">Productos</a>
+
+					  		<ul>
+								<li><a href="../producto_1/index.html" title="iMac">iMac</a></li>
+								<li><a href="../producto_2/index.html" title="iPhone">iPhone</a></li>
+								<li><a href="../video/video.html" title="Video">Video</a></li>
+							</ul>
+
+					  </li>
+
+
+					  <li>
+					  	<a href="contacto.html" title="Contacto">Contacto</a>
+					  </li>
+
+				</ul>
+
+			</nav>
+
+		     <main>
+                 <form id="registro">
+                       <h1>Contacto</h1>
+                       <h2>Introduce tus datos y petición</h2>
+                       <label for="email">Mi email es:*</label><p>(Puedes introducir varios separados por comas)</p>
+                         <input id="email" class="imputGeneral" type="email" size="40" name="email" multiple required>
+                       <label for="pass1" >Password:*</label><p>(Al menos 6 caracteres, sin espacios)</p>
+                         <input id="password1" class="imputGeneral" type="password" name="password1" pattern="[A-Za-z0-9]{6,}" required>
+                       <label for="pass2">Mi password repetida es:*</label>
+                         <input id="password2" class="imputGeneral" type="password" name="password2" pattern="[A-Za-z0-9]{6,}" required>
+                       <label for="peticion">Escribenos tu peticion</label>
+                         <input id="peticion" class="imputGeneral" type="text" size="80" name="peticion" required><br><br>
+                       <button id="registroSubmit" type="submit" name="button">Envíame</button>
+                 </form>
+			 </main>
+
+			 <footer>Sistemas Operativos © 2018</footer>
+
+	    </div>
+
+  </body>
+
+</html>

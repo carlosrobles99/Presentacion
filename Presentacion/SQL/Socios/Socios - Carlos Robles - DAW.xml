@@ -1,0 +1,64 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+
+<ejercicios>
+	<ejercicio id="1" peso="1">select nombre,apellidos,telefono 
+								from socios 
+								order by apellidos;
+	</ejercicio>
+	<ejercicio id="2" peso="1">select nombre,apellidos,telefono from socios 
+								where nivel like "%SENIOR%";
+	</ejercicio>
+	<ejercicio id="3" peso="1">select nombre,apellidos,telefono,cuota from socios 
+								where nivel like "%MEDIO%" and cuota &gt; 3 
+								order by localidad and apellidos;
+	</ejercicio>
+	<ejercicio id="4" peso="1">select * from socios 
+								where federado=0 and nivel like "%MEDIO%";
+	</ejercicio>
+	<ejercicio id="5" peso="1">select nombre,apellidos,direccion,localidad,telefono from socios 
+								where localidad not in("LOGROÑO");
+	</ejercicio>
+	<ejercicio id="6" peso="1">select * from socios 
+								where localidad in ("Arnedo", "Calahorra", "Alfaro") 
+								order by localidad;
+	</ejercicio>
+	<ejercicio id="7" peso="1">select * from socios 
+								where localidad not in("LOGROÑO","CALAHORRA");
+	</ejercicio>
+	<ejercicio id="8" peso="1">select * from socios 
+								where localidad in("ARNEDO") and estado_civil like "%soltero%"
+	</ejercicio>
+	<ejercicio id="9" peso="1">select * from socios 
+								where localidad in("ARNEDO","LOGROÑO") and estado_civil like "%soltero%";
+	</ejercicio>
+	<ejercicio id="10" peso="1">select * from socios 
+								where cuota &gt;= 3 and cuota &lt;= 6;
+	</ejercicio>
+	<ejercicio id="11" peso="1">select * from socios 
+								where localidad between "ARNEDO" and "LOGROÑO";
+	</ejercicio>
+	<ejercicio id="12" peso="1">select * from socios 
+								where nombre like "A%" 
+								order by localidad;
+	</ejercicio>
+	<ejercicio id="13" peso="1">select * from socios 
+								where apellidos like "%DIAZ%"
+	</ejercicio>
+	<ejercicio id="14" peso="1">select * from socios 
+								where apellidos like "%PEREZ%" and localidad not in ("LOGROÑO");
+	</ejercicio>
+	<ejercicio id="15" peso="2">select nombre,apellidos,TIMESTAMPDIFF(YEAR,fecha_nacimiento,now()) from socios;
+	</ejercicio>
+	<ejercicio id="16" peso="2">select nombre,apellidos,TIMESTAMPDIFF(YEAR,fecha_nacimiento,now()) as edad from socios 
+								having(edad &gt;= 48) order by edad desc;
+	</ejercicio>
+	<ejercicio id="17" peso="2">select nombre,apellidos,TIMESTAMPDIFF(YEAR,fecha_alta,now()) from socios 
+								where historial is null;
+	</ejercicio>
+	<ejercicio id="18" peso="2">select nombre,apellidos,right(dni,1) as letra from socios 
+								order by letra;
+	</ejercicio>
+	<ejercicio id="19" peso="1">select nombre,apellidos,(cuota/3)+((cuota/3)*0.21) from socios;
+	</ejercicio>
+	<ejercicio id="20" peso="1">select nombre,apellidos,CONCAT((cuota/3)+((cuota/3)*0.21)," euros") from socios;</ejercicio>
+</ejercicios>

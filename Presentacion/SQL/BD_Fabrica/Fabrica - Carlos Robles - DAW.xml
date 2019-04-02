@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ejercicios>
+	<ejercicio id="1" peso="1">select * from articulos 
+								where precio &gt;= 100 and precio &lt;= 200 or precio &gt; 900;
+	</ejercicio>
+	<ejercicio id="2" peso="1">select * from articulos 
+								where precio &lt; 10 or precio &gt; 100 
+								order by precio;
+	</ejercicio>
+	<ejercicio id="3" peso="1">select *,precio+(precio*0.21) as IVA from articulos;
+	</ejercicio>
+	<ejercicio id="4" peso="1">select *,((precio-(precio*0.15))*0.21)+(precio-(precio*0.15)) as preciodtoiva from articulos;
+	</ejercicio>
+	<ejercicio id="5" peso="1">select * from fabricas 
+								having(right(nombre,1)="5" or right(nombre,1)="6");
+	</ejercicio>
+	<ejercicio id="6" peso="1">select * from fabricas where nombre like "%b%";
+	</ejercicio>
+	<ejercicio id="7" peso="1">select * from articulos 
+								where cod=0011 or cod=0012 or cod=0049 or cod=0050 or cod=0198 or cod=0199;
+	</ejercicio>
+	<ejercicio id="8" peso="1.5">select num,fecha,fav.nombre,art.nombre,unidades from pedidos 
+								inner join fabricas fav on fav.cod = pedidos.codfabrica 
+								inner join articulos art on art.cod = pedidos.codarticulo;
+	</ejercicio>
+	<ejercicio id="9" peso="1">select *,(art.precio*unidades) as Importe from pedidos 
+								inner join articulos art on art.cod = pedidos.codarticulo 
+								order by num desc;
+	</ejercicio>
+	<ejercicio id="10" peso="1">select sum(art.precio*unidades) as Total from pedidos 
+								inner join articulos art on art.cod = pedidos.codarticulo;
+	</ejercicio>
+	<ejercicio id="11" peso="1">select * from pedidos 
+								where month(fecha)=4 or month(fecha)=5 or month(fecha)=6 
+								having(urgente=1) 
+								order by codfabrica;
+	</ejercicio>
+	<ejercicio id="12" peso="1.5">select num,codfabrica,codarticulo,date_format(fecha,'%d/%m/%Y') as FECHA,unidades from pedidos 
+									where now() &gt; fecha and servido=0;
+	</ejercicio>
+	<ejercicio id="13" peso="1.5">select cod,nombre,precio from articulos 
+								where precio &gt; (select avg(precio) from articulos) 
+								order by cod;
+	</ejercicio>
+	<ejercicio id="14" peso="2">select num,fecha,(unidades*art.precio) as Importe from pedidos 
+								inner join articulos art on art.cod=pedidos.codarticulo 
+								having(Importe &gt; (select avg(unidades*art.precio) from pedidos 
+								inner join articulos art on art.cod=pedidos.codarticulo)) 
+								order by num;
+	</ejercicio>
+	<ejercicio id="15" peso="2">select codfabrica, sum(unidades*art.precio) as Total from pedidos 
+								inner join articulos art on art.cod = pedidos.codarticulo 
+								where servido = 1 
+								group by codfabrica 
+								order by codfabrica;
+	</ejercicio>
+	<ejercicio id="16" peso="1.5">select art.nombre, sum(unidades*art.precio) as Total from pedidos 
+									inner join articulos art on art.cod=pedidos.codarticulo 
+									group by art.cod having(Total &gt; 35000) 
+									order by art.nombre desc;
+	</ejercicio>
+	<ejercicio id="17" peso="1.5">select art.cod,art.nombre,art.precio,ped.num from articulos art 
+								  left join pedidos ped on art.cod = ped.codarticulo;
+	</ejercicio>
+	<ejercicio id="18" peso="1.5">select cod,nombre,precio from articulos art 
+									where art.cod not in 
+									(select art1.cod from articulos art1 
+									inner join pedidos ped on art1.cod = ped.codarticulo) 
+									order by art.cod;
+	</ejercicio>
+	<ejercicio id="19" peso="1">insert into pedidos values('601','22','0915',now(),'3','1','0');
+	</ejercicio>
+	<ejercicio id="20" peso="1">delete from articulos where cod between '900' and '915';
+	</ejercicio>
+	<ejercicio id="21" peso="1">update pedidos set servido='1' where fecha &lt; now();
+	</ejercicio>
+</ejercicios>

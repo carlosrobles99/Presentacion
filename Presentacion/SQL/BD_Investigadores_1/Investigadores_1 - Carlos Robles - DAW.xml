@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ejercicios>
+	<ejercicio id="1" peso="1">insert into equipo values ('pc40','Equipo PC40','3');
+								insert into equipo values ('pc41','Equipo PC41','6');
+								insert into equipo values ('pc42','Equipo PC42','8'); 
+								insert into equipo values ('pc43','Equipo PC43','7'); 
+								insert into equipo values ('pc44','Equipo PC44','8'); 
+								insert into equipo values ('pc45','Equipo PC45','4'); 
+								insert into equipo values ('pc46','Equipo PC46','8'); 
+								insert into equipo values ('pc47','Equipo PC47','10'); 
+								insert into equipo values ('pc48','Equipo PC48','8'); 
+								insert into equipo values ('pc49','Equipo PC49','2'); 
+								insert into equipo values ('pc50','Equipo PC50','3');
+								insert into facultad values ('11','facul11');
+								insert into facultad values ('12','facul12');
+	</ejercicio>
+	<ejercicio id="2" peso="1">update equipo set facultad=(select cod from facultad where nombre like 'facul12') 
+								where numserie between 'pc20' and 'pc29';
+	</ejercicio>
+	<ejercicio id="3" peso="1">delete from equipo where facultad=7;
+	</ejercicio>
+	<ejercicio id="4" peso="1">delete from equipo eq 
+								inner join facultad fa on eq.facultad=fa.cod  
+								where fa.nombre like 'facul07';
+	</ejercicio>
+	<ejercicio id="5" peso="1">select * from equipo 
+								where numserie not in(select numserie from reserva);
+	</ejercicio>
+	<ejercicio id="6" peso="1">select * from equipo eq 
+								inner join facultad fa on eq.facultad=fa.cod 
+								where eq.numserie not in(select numserie from reserva) and fa.nombre like 'facul05' 
+								order by numserie desc;
+	</ejercicio>
+	<ejercicio id="7" peso="1.5">select * from investigador 
+								 where dni not in (select dni from reserva) 
+							     order by dni desc;
+	</ejercicio>
+	<ejercicio id="8" peso="1">select re.dni,l.nombre from reserva re 
+								inner join investigador l on l.dni=re.dni 
+								group by re.dni 
+								having count(re.dni) &gt; 1;
+	</ejercicio>
+	<ejercicio id="9" peso="1">select r.dni,r.nombre as Nombre_investigador,fa.nombre as Nombre_facultad,eq.numserie as numserie,eq.nombre as Nombre_Equipo, fa1.nombre as 
+								Nombre_Facultad,re.comienzo,datediff(re.fin,re.comienzo) as dias  from reserva re  
+								inner join investigador r on r.dni = re.dni  
+								inner join facultad fa on r.facultad = fa.cod  
+								inner join equipo eq on eq.numserie = re.numserie  
+								inner join facultad fa1 on fa1.cod = eq.facultad  
+								where re.comienzo &gt;= '2011-01-01 00:00:00' and re.fin &lt;= '2011-12-31 23:59:59' 
+								order by re.comienzo;
+	</ejercicio>
+	<ejercicio id="10" peso="1">select distinct i.dni,i.nombre from reserva re,investigador i,equipo e 
+								where re.dni = i.dni and re.numserie = e.numserie and i.facultad &lt;&gt; e.facultad 
+								order by i.nombre;
+	</ejercicio>
+	<ejercicio id="11" peso="1">select * from reserva re
+								where re.comienzo &gt;= '2010-01-01 00:00:00' and re.fin &lt;= '2010-12-31 23:59:59'
+								having(datediff(re.fin,re.comienzo)) &gt; 2
+								order by re.comienzo;
+	</ejercicio>
+	<ejercicio id="12" peso="1.5">select re.dni,re.numserie,date_format(re.comienzo,'%a, %e de %b de %Y') as comienzo,date_format(re.fin,'%a, %e de %b de %Y') as fin from 	
+								  reserva re order by re.dni,re.numserie;
+	</ejercicio>
+</ejercicios>

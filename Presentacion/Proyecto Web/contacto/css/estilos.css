@@ -1,0 +1,325 @@
+
+article, section, aside, nav, header, footer,
+figure, figcaption, main
+{
+display: block;
+}
+
+*{
+
+	margin: 0px;
+	padding: 0px;
+
+}
+
+#page{
+
+	width: 960px;
+	margin-top: 0px;
+	margin-bottom: 0px;
+	margin-left: auto;
+	margin-right: auto;
+	box-shadow: 20px 20px 20px #5882FA;
+	border-radius:20px 20px 20px 20px;
+
+}
+
+body{
+
+	padding-top: 30px;
+	padding-bottom: 100px;
+	text-align: center;
+    background-image: linear-gradient(180deg, #DA81F5, rgba(0,0,0,0)90%);
+	background-repeat: no-repeat;
+}
+
+#page > header{
+
+	font: italic 1.1em courier;
+	color: white;
+	border-bottom: solid 2px #3b33f5;
+	background-color: #55cbff;
+	border-radius:20px 20px 0px 0px;
+	border-top: 2px solid white;
+	border-left: 2px solid white;
+	border-right: 2px solid white;
+	padding-top: 10px;
+
+}
+
+#page > header > h1 > img{
+
+	position: relative;
+	top: 70px;
+	right: 75px;
+	/*Animacion en otros navegadores*/
+	-webkit-animation: logo 5s infinite;
+ 	-moz-animation: logo 5s infinite;
+    -o-animation: logo 5s infinite;
+    /*Animacion por defecto*/
+    animation: logo 5s infinite;
+    animation-name: logo;
+    animation-duration: 5s;
+
+}
+
+@keyframes logo
+{
+   from
+    {
+      transform: rotate(0deg);
+    }
+   50%
+    {
+      transform: rotateY(180deg);
+    }
+   to
+    {
+      transform: rotate(0deg);
+    }
+
+}
+
+@-webkit-keyframes logo
+{
+   from
+    {
+      transform: rotate(0deg);
+    }
+   50%
+    {
+      transform: rotateY(180deg);
+    }
+   to
+    {
+      transform: rotate(0deg);
+    }
+
+}
+
+@-moz-keyframes logo
+{
+   from
+    {
+      transform: rotate(0deg);
+    }
+   50%
+    {
+      transform: rotateY(180deg);
+    }
+   to
+    {
+      transform: rotate(0deg);
+    }
+
+}
+
+@-o-keyframes logo
+{
+   from
+    {
+      transform: rotate(0deg);
+    }
+   50%
+    {
+      transform: rotateY(180deg);
+    }
+   to
+    {
+      transform: rotate(0deg);
+    }
+
+}
+
+#page > header > h1{
+
+
+	position: relative;
+	bottom: 70px;
+	right: 100px;
+
+}
+
+nav{
+
+	color: black;
+	background-color: #9dffd5;
+	border-bottom: solid 2px #576af6;
+	border-left: 2px solid white;
+	border-right: 2px solid white;
+	text-align: center;
+	font-family: 'Bangers';
+	font-size: 25px;
+	font: 1.1em;
+	padding-top: 10px;
+
+}
+
+nav > ul li{
+
+	display: inline-block;
+	list-style: none;
+	cursor: default;
+	margin-left: 90px;
+	margin-right: 90px;
+	margin-top: 0px;
+	margin-bottom: 20px;
+	padding-top: 80px;
+
+}
+
+nav > ul li:nth-child(1) {
+
+    background-image: url("../../imgs/content.png");
+    background-position: center 10px;
+    background-repeat: no-repeat;
+
+}
+
+nav > ul li:nth-child(2) {
+
+   background-image: url("../../imgs/film.png");
+   background-position: center 10px;
+   background-repeat: no-repeat;
+
+}
+
+nav > ul li:nth-child(3) {
+
+  background-image: url("../../imgs/book.png");
+  background-position: center 10px;
+  background-repeat: no-repeat;
+
+}
+
+
+
+nav > ul li a{
+
+	color: black;
+	text-decoration: none;
+	text-shadow: 0px 0px 5px gray;
+
+}
+
+nav > ul li a:hover{
+
+	 text-shadow: 2px 2px 0px red;
+	 transition: 0.5s;
+
+}
+
+nav > ul > li > ul {
+
+	display: none;
+	position: absolute;
+	width: 300px;
+	z-index: 1;
+	border: solid 2px white;
+	border-radius: 20px 20px 20px 20px;
+
+}
+
+#page > nav li ul a{
+
+	padding-top: 10px;
+
+}
+
+#page > nav li:hover > ul{
+
+	background-color:#55cbff;
+	display: inline;
+
+}
+
+.clearfix:before,
+.clearfix:after,
+
+main{
+
+    font-size: 15px;
+	font-family: 'Bangers';
+	background-color: #55cbff;
+	width:99.6%;
+	display: table;
+	border-left: solid 2px white;
+	border-right: solid 2px white;
+}
+
+form{
+	height: 1000px;
+}
+
+form > h1{
+	padding-top: 30px;
+	padding-bottom: 30px;
+	font-size: 80px;
+	color: white;
+}
+
+form > h2{
+	padding-top: 40px;
+	padding-bottom: 40px;
+	font-size: 25px;
+	background-color: #9dffd5;
+	border-radius: 50px;
+	border: 2px solid white;
+}
+
+form > label{
+	padding: 20px;
+	display: block;
+	font-size: 25px;
+}
+
+form > input{
+	padding: 10px;
+	font-size: 12px;
+	background-color: #9dffd5;
+	border-radius: 50px;
+}
+
+form > p{
+	padding-bottom: 20px;
+	font-size: 19px;
+}
+
+#peticion{
+	padding: 40px;
+}
+
+button{
+   text-decoration: none;
+   padding: 30px;
+   font-weight: 600;
+   font-size: 20px;
+   color: #ffffff;
+   background-color: #1883ba;
+   border-radius: 6px;
+   border: 2px solid #0016b0;
+}
+
+button:hover{
+    color: black;
+    background-color: #21D7DC;
+ }
+
+footer{
+
+	font-family: 'Bangers';
+	font: 1em;
+	text-align: center;
+	background-color: #9dffd5;
+	border-top: solid 2px #3b33f5;
+	padding-top: 15px;
+	padding-bottom: 15px;
+	color: black;
+	border-bottom-left-radius: 15px;
+	border-bottom-right-radius: 15px;
+	border-bottom: 2px solid white;
+	border-left: 2px solid white;
+	border-right: 2px solid white;
+
+
+}

@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Plantilla ejercicio
+* No olvides usar las entidades &lt; y &gt; para sustituir al < y > respectivamente.
+-->
+<ejercicios>
+<ejercicio id="1" peso="1">update film set original_language_id = (select language_id from language where name like 'English'); update film set language_id = (select language_id from language where name like 'French') where film_id > 950;</ejercicio>
+<ejercicio id="2" peso="1">select * from customer c inner join address a on a.address_id = c.address_id where a.district like '%Buenos Aires%' order by c.last_name desc;</ejercicio>
+<ejercicio id="3" peso="2">select lower(concat(c.first_name,' ',c.last_name)) as Nombre,lower(c.email) as Correo from customer c inner join address a on a.address_id = c.address_id where a.district like '%Buenos Aires%' order by c.last_name desc;</ejercicio>
+<ejercicio id="4" peso="3">select concat(upper(left(c.first_name, 1)), lower(mid(c.first_name,2))) as Nombre, lower(c.email) as Correo from customer c inner join address a on a.address_id = c.address_id where a.district like '%Buenos Aires%' order by c.first_name asc;</ejercicio>
+<ejercicio id="5" peso="2">select c.first_name,c.last_name,c.email,a.address,a.district,ci.city,co.country   from customer c inner join address a on a.address_id=c.address_id inner join city ci on ci.city_id=a.city_id inner join country co on co.country_id=ci.country_id  where co.country like 'Spain' or co.country like 'Argentina' order by c.first_name,c.last_name;</ejercicio>
+<ejercicio id="6" peso="3">select f.title, l.name as idioma, l1.name as idioma_original, f.length as minutos from film f  inner join language l on l.language_id = f.language_id  inner join language l1 on l1.language_id = f.original_language_id  where f.length &gt; 180  order by minutos desc, f.title asc;</ejercicio>
+<ejercicio id="7" peso="2">select f.title,round(f.length/60) as horas, f.length%60 as minutos from film f where f.length &gt;= 60 and f.length &lt;= 180 and f.description like '%drama%' order by f.length asc, f.title;</ejercicio>
+<ejercicio id="8" peso="1">select f.title from film f  inner join film_actor fa on fa.film_id = f.film_id  inner join actor a on fa.actor_id = a.actor_id  where a.first_name like '%VAL%' and a.last_name like '%BOLGER%' order by f.title;</ejercicio>
+<ejercicio id="9" peso="1">select a.first_name as Nombre, a.last_name as Apellidos, count(film_id) Total_peliculas from actor a  inner join film_actor ac on ac.actor_id = a.actor_id  group by ac.actor_id  having (Total_peliculas) = (select max(maximo) from ( select count(film_id) as maximo from actor t inner join film_actor x on t.actor_id = x.actor_id group by x.actor_id) as derivada);</ejercicio>
+<ejercicio id="10" peso="3">select distinct first_name,last_name from actor group by first_name,last_name having count(*) &gt; 1;</ejercicio>
+<ejercicio id="11" peso="2">select dayname(rental_date) as diasemana, count(rental_id) as total_alquileres from rental group by diasemana;</ejercicio>
+<ejercicio id="12" peso="1">select f.title, count(i.film_id) as stock from film f inner join inventory i on i.film_id=f.film_id group by f.title order by f.title;</ejercicio>
+<ejercicio id="13" peso="2">select distinct f.film_id, f.title, f.length from film f inner join inventory i on i.film_id = f.film_id inner join store s on s.store_id =i.store_id where f.film_id in (select t.film_id from inventory t where t.store_id = 1) and f.film_id not in (select x.film_id from inventory x where x.store_id = 2) order by f.film_id;</ejercicio>
+<ejercicio id="14" peso="2">select distinct f.film_id, f.title, f.length from film f inner join inventory i on i.film_id = f.film_id inner join store s on s.store_id =i.store_id where f.film_id in (select t.film_id from inventory t where t.store_id = 1) and f.film_id in (select x.film_id from inventory x where x.store_id = 2) order by f.film_id;</ejercicio>
+<ejercicio id="15" peso="3">select ca.name as categoria,concat(sum(p.amount),'$') as total from payment p  inner join rental r on r.rental_id=p.rental_id  inner join inventory i on i.inventory_id=r.inventory_id  inner join film f on f.film_id=i.film_id  inner join film_category fc on fc.film_id=f.film_id  inner join category ca on ca.category_id=fc.category_id  group by ca.category_id  order by total desc;</ejercicio>
+<ejercicio id="16" peso="3">select ss.first_name, ss.last_name, ad.address, co.country, sum(pa.amount) as total from staff ss inner join address ad on ad.address_id=ss.address_id inner join city ci on ci.city_id=ad.city_id inner join country co on co.country_id=ci.country_id inner join payment pa on pa.staff_id=ss.staff_id group by ss.staff_id  having (total) = (select max(maximo)  from ( select sum(pa.amount) as maximo from staff ss inner join address ad on ad.address_id=ss.address_id inner join city ci on ci.city_id=ad.city_id inner join country co on co.country_id=ci.country_id inner join payment pa on pa.staff_id=ss.staff_id group by ss.staff_id) as derivada);</ejercicio>
+<ejercicio id="17" peso="3">select a.actor_id, a.first_name, a.last_name, sum(pa.amount) as total from actor a  inner join film_actor fa on fa.actor_id=a.actor_id  inner join film f on f.film_id=fa.film_id  inner join inventory i on i.film_id=f.film_id  inner join rental re on re.inventory_id=i.inventory_id  inner join payment pa on pa.rental_id=re.rental_id  group by a.actor_id order by total desc limit 5;</ejercicio>
+<ejercicio id="18" peso="1">update rental as r inner join payment pa on pa.rental_id=r.rental_id  set r.return_date = date_add(r.rental_date, interval 2 day)  where r.return_date is null and pa.amount > 1;</ejercicio>
+</ejercicios>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

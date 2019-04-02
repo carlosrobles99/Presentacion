@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Plantilla ejercicio
+* No olvides usar las entidades &lt; y &gt; para sustituir al < y > respectivamente.
+-->
+<ejercicios>
+<ejercicio id="1" peso="1">select numserie from reserva where comienzo like '2015-05-18';</ejercicio>
+<ejercicio id="2" peso="1">select re.numserie,e.nombre from reserva re inner join equipo e on e.numserie=re.numserie where comienzo like '2015-05-18';</ejercicio>
+<ejercicio id="3" peso="1.5">select e.numserie,e.nombre from equipo e where e.numserie not in (select re.numserie from reserva re where re.comienzo like '2015-05-18');</ejercicio>
+<ejercicio id="4" peso="2">select e.numserie,e.nombre from equipo e inner join facultad fa on fa.cod=e.facultad where e.numserie not in(select re.numserie from reserva re where re.comienzo like '2015-05-18') and fa.nombre like 'facul09';</ejercicio>
+<ejercicio id="5" peso="2">select numserie from reserva where comienzo &gt;= '2015-05-12' and fin &lt;= '2015-05-13' order by comienzo,fin;</ejercicio>
+<ejercicio id="6" peso="1">select count(numserie) as cantidad  from reserva where numserie like 'pc10';</ejercicio>
+<ejercicio id="7" peso="1">select sum(datediff(fin,comienzo)) from reserva where numserie like 'pc10';</ejercicio>
+<ejercicio id="8" peso="1.5">select sum(datediff(re.fin,re.comienzo)) from reserva re inner join equipo e on e.numserie = re.numserie inner join facultad fa on e.facultad = fa.cod where fa.nombre like 'facul07';</ejercicio>
+<ejercicio id="9" peso="1.5">select x.dni, sum(datediff(re.fin,re.comienzo)) as totdias from reserva re inner join investigador x on x.dni=re.dni where re.fin between '2008-01-01' and '2008-12-31' or re.fin between '2009-01-01' and '2009-12-31' and re.comienzo between '2008-01-01' and '2008-12-31' or re.comienzo between '2009-01-01' and '2009-12-31' group by x.dni having(totdias) &gt; 4 order by totdias, re.dni;</ejercicio>
+<ejercicio id="10" peso="1.5">select re.dni,x.nombre,count(re.dni) as veces from reserva re inner join investigador x on x.dni=re.dni  group by re.dni having (veces) = ( select max(veces) as veces  from( select count(re.dni) veces  from reserva re  group by re.dni ) as derivada );</ejercicio>
+<ejercicio id="11" peso="2">select x.dni,x.nombre as investigador,fa.nombre,count(re.dni) as veces from investigador x inner join facultad fa on fa.cod = x.facultad inner join reserva re on re.dni = x.dni group by (re.dni) order by veces desc, re.dni limit 10;</ejercicio>
+<ejercicio id="12" peso="1.5">select fa.cod,fa.nombre,count(eq.facultad) as totalequipos from facultad fa inner join equipo eq on eq.facultad = fa.cod group by fa.cod order by totalequipos desc, fa.cod asc;</ejercicio>
+<ejercicio id="13" peso="1.5">select fa.nombre from facultad fa inner join investigador x on x.facultad = fa.cod group by fa.cod having count(x.dni) = (select min(minimo) from( select count(x.dni) as minimo from investigador x inner join facultad fa on x.facultad = fa.cod group by fa.cod) as derivada);</ejercicio>
+<ejercicio id="14" peso="2.5">create table equipo_sinusar select * from equipo e where e.numserie not in(select distinct eq.numserie from equipo eq inner join reserva re on re.numserie = eq.numserie) union select distinct eq.numserie,eq.nombre,eq.facultad from equipo eq inner join reserva re on re.numserie = eq.numserie;</ejercicio>
+<ejercicio id="15" peso="1.5">(select * from equipo e where e.numserie not in(select distinct eq.numserie from equipo eq inner join reserva re on re.numserie = eq.numserie)) union (select distinct e.numserie,e.nombre,e.facultad from equipo e inner join reserva re on re.numserie = e.numserie) order by numserie;</ejercicio>
+</ejercicios>
